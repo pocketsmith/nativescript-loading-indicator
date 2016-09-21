@@ -1,5 +1,6 @@
 import {OptionsCommon} from '../interfaces';
 import {Color} from 'color';
+import {device} from 'platform';
 
 declare var MBProgressHUD: any;
 declare var MBProgressHUDModeCustomView: any;
@@ -45,6 +46,7 @@ export class LoadingIndicator {
   }
   
   private _getRootWindow() {
-    return UIApplication.sharedApplication().windows[0];
+    let win = (parseInt(device.osVersion) >= 10) ? UIApplication.sharedApplication : UIApplication.sharedApplication();
+    return win.windows[0];
   }
 }
