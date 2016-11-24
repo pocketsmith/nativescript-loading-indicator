@@ -118,6 +118,7 @@ export class GenericComponent implements OnInit {
     // Do whatever it is you want to do while the loader is showing, then
     this.loadingIndicator.hide();
   }
+}
 ```
 
 ### Options
