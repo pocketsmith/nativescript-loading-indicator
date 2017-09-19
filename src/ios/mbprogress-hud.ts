@@ -7,6 +7,7 @@ declare var MBProgressHUDModeCustomView: any;
 declare var UIApplication: any;
 declare var UIImageView: any;
 declare var UIImage: any;
+declare var MBProgressHUDBackgroundStyle : any;
 
 export class LoadingIndicator {
   private _hud: any;
