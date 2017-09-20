@@ -12,7 +12,7 @@
 tns plugin add nativescript-loading-indicator
 ```
 
-## Example
+## Javascript Example
 
 ```js
 var LoadingIndicator = require("nativescript-loading-indicator").LoadingIndicator;
@@ -56,6 +56,74 @@ loader.show(options); // options is optional
 // Do whatever it is you want to do while the loader is showing, then
 
 loader.hide();
+```
+
+##  Angular 2 Example
+
+#### main.ts
+```js
+import { LoadingIndicator } from "nativescript-loading-indicator"; // import Loading inidicator here
+
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  bootstrap: [
+    AppComponent
+  ],
+  imports: [
+    HttpModule,
+    NativeScriptModule
+  ],
+  providers: [
+    LoadingIndicator // Add "LoadingIndicator" on Angular 2 providers
+  ]
+})
+```
+
+#### generic.component.ts
+```js
+import { Component, OnInit } from "@angular/core";
+import { LoadingIndicator } from "nativescript-loading-indicator"; // import LoadingIndicatior here
+
+@Component({
+  // ...your component options here
+})
+export class GenericComponent implements OnInit {
+  public constructor (
+    private loadingIndicator: LoadingIndicator // instantiate LoadingIndicatior on constructor
+  ) { }
+
+  ngOnInit() {
+    // android and ios have some platform specific options
+    let options = {
+      message: 'Loading...',
+      progress: 0.65,
+      android: {
+        indeterminate: true,
+        cancelable: false,
+        max: 100,
+        progressNumberFormat: "%1d/%2d",
+        progressPercentFormat: 0.53,
+        progressStyle: 1,
+        secondaryProgress: 1
+      },
+      ios: {
+        details: "Additional detail note!",
+        square: false,
+        margin: 10,
+        dimBackground: true,
+        color: "#4B9ED6",
+        mode: // see iOS specific options below
+      }
+    };
+
+    this.loadingIndicator.show(options); // options is optional
+
+    // Do whatever it is you want to do while the loader is showing, then
+    this.loadingIndicator.hide();
+  }
+}
 ```
 
 ### Options
